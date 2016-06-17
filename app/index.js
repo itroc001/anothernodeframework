@@ -24,7 +24,7 @@ router.use(function(req, res, next) {
 });
 
 // Controllers
-require('./app/controllers/posts.controller')(app);
+require('./post')(app);
 
 // Register Routes
 app.use('/api', router);

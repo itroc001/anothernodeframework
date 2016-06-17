@@ -2,7 +2,7 @@
   "name": "api",
   "version": "0.0.1",
   "description": "fnhipster API service",
-  "main": "server.js",
+  "main": "./app/index.js",
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.14.0",
@@ -11,7 +11,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app/index.js"
   },
   "author": "Carlos A. Cabrera",
   "license": "ISC"
