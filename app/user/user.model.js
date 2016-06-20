@@ -1,21 +1,23 @@
-const DataStoreModel = require('../datastore.model');
+const DataStore = require('../datastore.model');
+const model = new DataStore('User');
 
-class UserModel extends DataStoreModel {
-
+class User {
 
     constructor(attrs = {}) {
-        super('User', attrs.id);
+        this.username = attrs.username;
+        this.password = attrs.password;
+        this.admin = attrs.admin || false;
+    }
 
-        this.params = {
-            username: attrs.username,
-            password: attrs.password,
-            admin: attrs.admin || false
-        };
+    save(cb) {
+      return model.save(this, cb);
+    }
 
-
+    static findAll(cb) {
+      return model.findAll(cb);
     }
 
 
 }
 
-module.exports = UserModel;
+module.exports = User;

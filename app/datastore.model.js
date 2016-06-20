@@ -1,36 +1,38 @@
 const datastore = require('./db');
 
-class DataStoreModel {
+class DataStore {
 
-    constructor(_kind, _id) {
-        this.key = datastore.key([_kind, _id]);
-        this.params = null;
+    constructor(_kind) {
+        this.kind = _kind;
     }
 
-
-    save(callback = () => {}) {
+    save(data, callback = () => {}) {
+        let key = datastore.key(this.kind);
         return datastore.save({
-            key: this.key,
-            data: this.params
+            key: key,
+            data: data
         }, (err) => {
             return callback(err);
         });
     }
 
     delete(callback = () => {}) {
+        let key = datastore.key([this.kind]);
         return datastore.delete(this.key, (err) => {
             return callback(err);
         });
     }
 
-    find(callback = () => {}) {
-        return datastore.get(this.key, (err, response) => {
+
+    findById(_id, callback = () => {}) {
+        let key = datastore.key([this.kind, _id]);
+        return datastore.get(key, (err, response) => {
             return callback(err, response);
         });
     }
 
     findAll(callback = () => {}) {
-        let query = datastore.createQuery(this.key.kind);
+        let query = datastore.createQuery(this.kind);
         return datastore.runQuery(query, (err, response) => {
             return callback(err, response);
         });
@@ -38,4 +40,4 @@ class DataStoreModel {
 
 }
 
-module.exports = DataStoreModel;
+module.exports = DataStore;
