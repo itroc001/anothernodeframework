@@ -1,6 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const jwt = require('jsonwebtoken');
+const keys = require('../config/keys');
+
+var morgan = require('morgan');
+
 // Express App
 const app = express();
 
@@ -16,19 +21,25 @@ const port = process.env.PORT || 8080;
 // Routes
 const router = express.Router();
 
+// Secret Token
+app.set('secretToken', keys.secret);
+
+// use morgan to log requests to the console
+app.use(morgan('dev'));
+
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
-    console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
 
-// Controllers
-require('./post')(app);
+// Components
+// require('./post')(app);
+require('./user')(app);
 
 // Register Routes
 app.use('/api', router);
 
 // Start server
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log('\nServer running on port ' + port + '...\n');

@@ -12,7 +12,7 @@ module.exports = function(app) {
         return datastore.save({
             key: key,
             data: post.data
-        }, (err) => res.json(err || post.data));
+        }, (err) => res.json(err || { success: true }));
     });
 
     // [R]ead
@@ -29,20 +29,20 @@ module.exports = function(app) {
         return datastore.save({
             key: key,
             data: post.data
-        }, (err) => res.json(err || post.data));
+        }, (err) => res.json(err || { success: true }));
     });
 
     // [D]elete
     app.delete('/posts/:id', (req, res) => {
         let _id = Number(req.params.id);
         let key = datastore.key(['Post', _id]);
-        return datastore.delete(key, (err) => res.json(err || true));
+        return datastore.delete(key, (err) => res.json(err || { success: true }));
     });
 
     // Read All
     app.get('/posts', (req, res) => {
         let query = datastore.createQuery('Post');
-        return datastore.runQuery(query, (err, entity) => res.json(err || entity));
+        return datastore.runQuery(query, (err, entities) => res.json(err || entities));
     });
 
 }
