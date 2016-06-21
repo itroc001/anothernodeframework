@@ -2,6 +2,10 @@
 
 (work in progress)
 
+Run server: `npm start`
+
+Run Tests: `npm test`
+
 - [ ] Documentation
 - [X] Post CRUD
 - [X] Routes
