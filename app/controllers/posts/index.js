@@ -13,28 +13,28 @@ module.exports = class PostController {
     static create(req, res, next) {
         let post = new Post(req.body);
         post.save((err, entity) => {
-            res.json(err || entity);
+            return res.json(err || entity);
         });
     }
 
     // Show
     static show(req, res, next) {
         Post.findById(req.params['id'], (err, entity) => {
-            res.json({ error: err } || entity)
+            return res.json(err || entity)
         });
     }
 
     // Update
     static update(req, res, next) {
         Post.findOneAndUpdate({_id: req.params['id'] }, req.body, { new: true }, (err, entity) => {
-            res.json({ error: err } || entity);
+            return res.json(err || entity);
         })
     }
 
     // Delete
     static delete(req, res, next) {
         Post.findOneAndRemove({ _id: req.params['id']}, {}, (err) => {
-            res.json({ error: err } || { success: true })
+            return res.json(err || { success: true })
         });
     }
 

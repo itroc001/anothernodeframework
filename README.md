@@ -12,7 +12,7 @@ Run Tests: `npm test`
 - [X] Model Class
     - [X] Unit Testing
 - [X] Controller Class
-    - [ ] Unit Testing
+    - [X] Unit Testing
 - [ ] View as jSON Template?
 - [ ] Authentication
 - [ ] Database Config
