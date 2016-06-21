@@ -1,25 +1,28 @@
 # fnhipster API
 
-- [ ] API Description
+(work in progress)
 
----
-## Database
-- [ ] Database Documentation
-- [X] Post CRUD
-
----
-## Authentication
-- [ ] User Authentication
 - [ ] Documentation
+- [X] Post CRUD
+- [X] Routes
+- [X] Model Class
+    - [X] Unit Testing
+- [X] Controller Class
+    - [ ] Unit Testing
+- [ ] View as jSON Template?
+- [ ] Authentication
+- [ ] Database Config
 
 ---
 ## Routes
+`./app/routes.js`
+
 |Route|HTTP Verb|Description|
 |-----|:-------:|----------|
-|/posts|GET|Get all the posts.|
-|/posts|POST|Create a post.|
-|/posts/:bear_id|GET|Get a single post.|
-|/posts/:bear_id|PUT|Update a post with new info.|
-|/posts/:bear_id|DELETE|Delete a post.|
+|/api/posts|GET|Get all the posts.|
+|/api/posts|POST|Create a post.|
+|/api/posts/:id|GET|Get a single post.|
+|/api/posts/:id|PUT|Update a post with new info.|
+|/api/posts/:id|DELETE|Delete a post.|
 
 ---
