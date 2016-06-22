@@ -1,41 +1,26 @@
-const Post = require('../../models/post');
+const Controller = require('../../lib/controller');
+const controller = new Controller(require('../../models/post'));
 
 module.exports = class PostController {
 
-    // Index
     static index(req, res, next) {
-        Post.find(function(err, results) {
-            return res.json(err || results)
-        });
+        return controller.index(req, res, next);
     }
 
-    // Create
     static create(req, res, next) {
-        let post = new Post(req.body);
-        post.save((err, entity) => {
-            return res.json(err || entity);
-        });
+        return controller.create(req, res, next);
     }
 
-    // Show
     static show(req, res, next) {
-        Post.findById(req.params['id'], (err, entity) => {
-            return res.json(err || entity)
-        });
+        return controller.show(req, res, next);
     }
 
-    // Update
     static update(req, res, next) {
-        Post.findOneAndUpdate({_id: req.params['id'] }, req.body, { new: true }, (err, entity) => {
-            return res.json(err || entity);
-        })
+        return controller.update(req, res, next);
     }
 
-    // Delete
     static delete(req, res, next) {
-        Post.findOneAndRemove({ _id: req.params['id']}, {}, (err) => {
-            return res.json(err || { success: true })
-        });
+        return controller.delete(req, res, next);
     }
 
 }
