@@ -1,0 +1,4 @@
+{
+    "secretKey": "weareupallnighttogetlucky",
+    "database": "mongodb://localhost/fnhipster"
+}

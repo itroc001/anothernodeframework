@@ -1,14 +1,21 @@
-const express = require('express');
 const bodyParser = require('body-parser');
-
 const jwt = require('jsonwebtoken');
+const morgan = require('morgan');
+const config = require('./config.json');
 
-var morgan = require('morgan');
 
 // Express App
+const express = require('express');
 const app = express();
 
-// Configure bodyParser to get data from POST
+// Database Connection
+const db = require('./db');
+db('development');
+
+// Private Token
+app.set('secretKey', config.secretKey);
+
+// Body Parser to get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({
     extended: true
 }));
