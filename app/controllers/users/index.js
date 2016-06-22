@@ -1,7 +1,7 @@
 const Controller = require('../../lib/controller');
-const controller = new Controller(require('../../models/post'));
+const controller = new Controller(require('../../models/user'));
 
-module.exports = class PostController {
+module.exports = class UserController {
 
     static index(req, res, next) {
         return controller.index(req, res, next);

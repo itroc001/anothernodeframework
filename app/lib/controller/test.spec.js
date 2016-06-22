@@ -1,12 +1,23 @@
+// Database Connection
+const db = require('../../db');
+db('test');
+
+// Dependencies
 const chai = require('chai');
 const expect = require('chai').expect;
 const http_mocks = require('node-mocks-http');
-const PostController = require('./');
+const Controller = require('./');
 
+// Mock Model
+const mongoose = require('mongoose');
+const schema = mongoose.Schema({ foo: String });
+const controller = new Controller(mongoose.model('TestModel', schema));
 
-describe('PostController', () => {
+describe('Controller', () => {
 
+    let mockData = { foo: 'bar' };
     let res, req, _id;
+
 
     beforeEach(() => {
         res = http_mocks.createResponse({
@@ -14,7 +25,7 @@ describe('PostController', () => {
         })
     });
 
-
+    // Index
     it('#index', (done) => {
         req = http_mocks.createRequest({
             method: 'GET'
@@ -26,32 +37,32 @@ describe('PostController', () => {
             done();
         });
 
-        PostController.index(req, res);
+        controller.index(req, res);
 
     });
 
+
+    // Create
     it('#create', (done) => {
-        mockPost = {
-            title: 'Foo',
-            content: 'Bar'
-        };
 
         req = http_mocks.createRequest({
             method: 'POST',
-            body: mockPost
+            body: mockData
         });
 
         res.on('end', () => {
             let data = JSON.parse(res._getData());
             _id = data._id;
-            expect(data.title).to.equal('Foo');
+            expect(data.foo).to.equal(mockData.foo);
             done();
         });
 
-        PostController.create(req, res);
+        controller.create(req, res);
 
     });
 
+
+    // Show
     it('#show', (done) => {
 
         req = http_mocks.createRequest({
@@ -62,31 +73,34 @@ describe('PostController', () => {
 
         res.on('end', () => {
             let data = JSON.parse(res._getData());
-            expect(data.title).to.equal('Foo');
+            expect(data.foo).to.equal(mockData.foo);
             done();
         });
 
-        PostController.show(req, res);
+        controller.show(req, res);
     });
 
+
+    // Update
     it('#update', (done) => {
+        mockData.foo = 'bar2'; // make a change
+
          req = http_mocks.createRequest({
             method: 'PUT',
             params: { id: _id },
-            body: {
-                title: 'Foo - Updated'
-            }
+            body: mockData
         });
 
 
         res.on('end', () => {
             let data = JSON.parse(res._getData());
-            expect(data.title).to.equal('Foo - Updated');
+            expect(data.foo).to.equal(mockData.foo);
             done();
         });
 
-        PostController.update(req, res);
+        controller.update(req, res);
     });
+
 
 
     it('#delete', (done) => {
@@ -101,7 +115,7 @@ describe('PostController', () => {
             done();
         });
 
-        PostController.delete(req, res);
+        controller.delete(req, res);
     });
 
 
