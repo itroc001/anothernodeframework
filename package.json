@@ -4,7 +4,7 @@
   "description": "fnhipster API service",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/ccabreraruiz/fnhipster.api"
+    "url": "https://github.com/carlosacabrera/anothernodeframework"
   },
   "main": "./app/index.js",
   "dependencies": {
