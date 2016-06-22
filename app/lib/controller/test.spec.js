@@ -1,8 +1,3 @@
-// Database Connection
-const db = require('../../db');
-db('test');
-
-// Dependencies
 const chai = require('chai');
 const expect = require('chai').expect;
 const http_mocks = require('node-mocks-http');
@@ -13,17 +8,29 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema({ foo: String });
 const controller = new Controller(mongoose.model('TestModel', schema));
 
+// Database Connection
+const Database = require('../db');
+let db = new Database('test');
+
 describe('Controller', () => {
 
     let mockData = { foo: 'bar' };
     let res, req, _id;
 
+    before(() => {
+        db.connect();
+    });
+
+    after(() => {
+        db.dropAndDisconnect();
+    });
 
     beforeEach(() => {
         res = http_mocks.createResponse({
             eventEmitter: require('events').EventEmitter
         })
     });
+
 
     // Index
     it('#index', (done) => {

@@ -2,15 +2,16 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const morgan = require('morgan');
 const config = require('./config.json');
-
+const colors =  require('colors');
 
 // Express App
 const express = require('express');
 const app = express();
 
 // Database Connection
-const db = require('./db');
-db('development');
+const Database = require('./lib/db');
+const db = new Database('development');
+db.connect();
 
 // Private Token
 app.set('secretKey', config.secretKey);
@@ -44,4 +45,4 @@ app.use('/api', router);
 
 // Start server
 app.listen(port);
-console.log('\nServer running on port ' + port + '...\n');
+console.log(`\n...server running on port ${port.underline}...\n`.green);

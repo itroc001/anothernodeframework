@@ -1,5 +1,6 @@
+const User = require('../../models/user');
 const Controller = require('../../lib/controller');
-const controller = new Controller(require('../../models/user'));
+const controller = new Controller(User);
 
 module.exports = class UserController {
 
