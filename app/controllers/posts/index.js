@@ -1,5 +1,6 @@
+const Post = require('../../models/post');
 const Controller = require('../../lib/controller');
-const controller = new Controller(require('../../models/post'));
+const controller = new Controller(Post);
 
 module.exports = class PostController {
 
