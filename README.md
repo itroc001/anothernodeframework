@@ -28,5 +28,10 @@ Run Tests: `npm test`
 |/api/posts/:id|GET|Get a single post.|
 |/api/posts/:id|PUT|Update a post with new info.|
 |/api/posts/:id|DELETE|Delete a post.|
+|/api/users|GET|Get all the users.|
+|/api/users|POST|Create a user.|
+|/api/users/:id|GET|Get a single user.|
+|/api/users/:id|PUT|Update a user with new info.|
+|/api/users/:id|DELETE|Delete a user.|
 
 ---
