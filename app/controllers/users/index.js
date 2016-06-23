@@ -1,27 +1,38 @@
 const User = require('../../models/user');
-const Controller = require('../../lib/controller');
-const controller = new Controller(User);
+const BaseController = require('../../lib/BaseController');
+const controller = new BaseController(User);
 
 module.exports = class UserController {
 
-    static index(req, res, next) {
-        return controller.index(req, res, next);
+    // Index
+    static index(req, res) {
+        return controller.index((err, doc) => res.json(err || doc));
     }
 
-    static create(req, res, next) {
-        return controller.create(req, res, next);
+    // Create
+    static create(req, res) {
+        return controller.create(req.body.user, (err, doc) => res.json(err || doc));
     }
 
-    static show(req, res, next) {
-        return controller.show(req, res, next);
+    // Show
+    static show(req, res) {
+        return controller.show({
+            _id: req.params.id
+        }, (err, doc) => res.json(err || doc))
     }
 
-    static update(req, res, next) {
-        return controller.update(req, res, next);
-    }
+    // Update
+    static update(req, res) {
+        return controller.update({
+            _id: req.params.id
+        }, req.body.user, (err, doc) => res.json(err || doc));
+    };
 
-    static delete(req, res, next) {
-        return controller.delete(req, res, next);
+    // Delete
+    static delete(req, res) {
+        return controller.delete({
+            _id: req.params.id
+        }, (err, doc) => res.json(err || doc));
     }
 
 }

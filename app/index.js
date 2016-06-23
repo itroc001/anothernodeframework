@@ -1,5 +1,4 @@
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
 const morgan = require('morgan');
 const config = require('./config.json');
 const colors =  require('colors');
@@ -12,9 +11,6 @@ const app = express();
 const Database = require('./lib/db');
 const db = new Database('development');
 db.connect();
-
-// Private Token
-app.set('secretKey', config.secretKey);
 
 // Body Parser to get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({
@@ -45,4 +41,4 @@ app.use('/api', router);
 
 // Start server
 app.listen(port);
-console.log(`\n...server running on port ${port.underline}...\n`.green);
+console.log(`\nServer running on port ${port}...\n`.green);

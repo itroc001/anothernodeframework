@@ -15,17 +15,17 @@ module.exports = class Database {
     }
 
     connect() {
-        console.log(`...connected to database ${this.dbName.underline} `.cyan);
+        console.log(`\nConnected to database ${this.dbName.underline} \n`.cyan);
         return mongoose.connect(this.dbName);
     }
 
     disconnect() {
-        console.log(`...disconnect from database ${this.dbName.underline} `.cyan);
+        console.log(`\nDisconnected from database ${this.dbName.underline} \n`.cyan);
         return mongoose.connection.close();
     }
 
     dropAndDisconnect() {
-        console.log(`...dropped database ${this.dbName.underline} (to the ground) ... disconnected.`.cyan);
+        console.log(`\nDropped database ${this.dbName.underline} (to the ground) ... and disconnected. \n`.cyan);
         mongoose.connection.db.dropDatabase()
         return mongoose.connection.close();
     }
