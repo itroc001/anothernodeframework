@@ -23,7 +23,8 @@
     "node-mocks-http": "^1.5.2"
   },
   "scripts": {
-    "test": "istanbul cover _mocha && open ./coverage/lcov-report/index.html",
+    "test": "istanbul cover _mocha",
+    "coverage": "open ./coverage/lcov-report/index.html",
     "start": "node ./app/index.js"
   },
   "author": "Carlos A. Cabrera",
