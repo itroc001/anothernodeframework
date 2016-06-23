@@ -16,11 +16,14 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0",
     "node-mocks-http": "^1.5.2"
   },
   "scripts": {
-    "test": "mocha app/**/*.spec.js",
+    "test": "istanbul cover _mocha",
     "start": "node app/index.js"
   },
   "author": "Carlos A. Cabrera",

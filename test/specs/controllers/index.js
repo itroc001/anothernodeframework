@@ -1,6 +1,4 @@
-const chai = require('chai');
-const expect = require('chai').expect;
-const BaseController = require('./');
+const BaseController = require('../../../app/controllers');
 
 // Mock Model
 const mongoose = require('mongoose');
