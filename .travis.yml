@@ -6,7 +6,7 @@ services:
     - mongodb
 
 script:
-    - npm test
+    - istanbul cover _mocha
 
 after_success:
     - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
