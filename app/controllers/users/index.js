@@ -1,5 +1,5 @@
 const User = require('../../models/user');
-const BaseController = require('../../lib/BaseController');
+const BaseController = require('../');
 const controller = new BaseController(User);
 
 module.exports = class UserController {

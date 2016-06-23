@@ -1,9 +1,6 @@
-const controller = require('./');
-const chai = require('chai');
-const expect = require('chai').expect;
 const http_mocks = require('node-mocks-http');
-const User = require('../../models/user');
-
+const controller = require('../../../../app/controllers/users');
+const User = require('../../../../app/models/user');
 
 describe('UserController', () => {
     let _uniqueId = 0;

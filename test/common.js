@@ -1,5 +1,8 @@
+global.chai = require('chai');
+global.expect = global.chai.expect;
+
 // Database Connection
-const Database = require('./lib/db');
+const Database = require('../database');
 let db = new Database('test');
 
 before(() => {
@@ -9,3 +12,5 @@ before(() => {
 after(() => {
     db.dropAndDisconnect();
 });
+
+

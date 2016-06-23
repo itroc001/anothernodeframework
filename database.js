@@ -1,17 +1,12 @@
-const colors =  require('colors');
+const colors = require('colors');
 const mongoose = require('mongoose');
-const config = require('../../config.json');
 
-module.exports = (env) => {
-    let dbName = config.database + '_' + env;
-    mongoose.connect(dbName);
-    console.log('Database: ' + dbName);
-}
+const database = 'mongodb://localhost/fnhipster';
 
 module.exports = class Database {
 
     constructor(env = 'development') {
-        this.dbName = config.database + '_' + env;
+        this.dbName = database + '_' + env;
     }
 
     connect() {

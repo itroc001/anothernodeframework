@@ -1,6 +1,5 @@
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const config = require('./config.json');
 const colors =  require('colors');
 
 // Express App
@@ -8,7 +7,7 @@ const express = require('express');
 const app = express();
 
 // Database Connection
-const Database = require('./lib/db');
+const Database = require('../database');
 const db = new Database('development');
 db.connect();
 
