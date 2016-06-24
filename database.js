@@ -19,11 +19,5 @@ module.exports = class Database {
         return mongoose.connection.close();
     }
 
-    dropAndDisconnect() {
-        console.log(`\nDropped database ${this.dbName.underline} (to the ground) ... and disconnected. \n`.cyan);
-        mongoose.connection.db.dropDatabase()
-        return mongoose.connection.close();
-    }
-
 
 }

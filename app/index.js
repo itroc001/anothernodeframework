@@ -6,9 +6,15 @@ const colors =  require('colors');
 const express = require('express');
 const app = express();
 
+// Port
+const port = process.env.PORT || 8080;
+
+// Environment
+const environment = process.env.NODE_ENV || 'test';
+
 // Database Connection
 const Database = require('../database');
-const db = new Database('development');
+const db = new Database(environment);
 db.connect();
 
 // Body Parser to get info from POST and/or URL parameters
@@ -16,9 +22,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
-// Port
-const port = process.env.PORT || 8080;
 
 // Routes
 const router = express.Router();
