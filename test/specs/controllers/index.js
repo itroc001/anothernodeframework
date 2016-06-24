@@ -23,7 +23,6 @@ describe('BaseController', () => {
         model.save(done);
     });
 
-
     // Index
     it('#index', (done) => {
         controller.index((err, doc) => {

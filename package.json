@@ -23,9 +23,10 @@
     "node-mocks-http": "^1.5.2"
   },
   "scripts": {
-    "test": "istanbul cover _mocha",
+    "test": "NODE_ENV=test istanbul cover _mocha",
     "coverage": "open ./coverage/lcov-report/index.html",
-    "start": "node ./app/index.js"
+    "start:production": "NODE_ENV=production node ./app/index.js",
+    "start:development": "NODE_ENV=development node ./app/index.js"
   },
   "author": "Carlos A. Cabrera",
   "license": "ISC"
