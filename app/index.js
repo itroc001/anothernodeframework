@@ -12,10 +12,8 @@ const port = process.env.PORT || 8080;
 // Environment
 const environment = process.env.NODE_ENV || 'test';
 
-// Database Connection
+// Database
 const Database = require('../database');
-const db = new Database(environment);
-db.connect();
 
 // Body Parser to get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({
@@ -41,5 +39,7 @@ require('./routes')(app);
 
 
 // Start server
-app.listen(port);
-console.log(`\nServer running on port ${port}...\n`.green);
+module.exports = app.listen(port, () => {
+    console.log(`\nServer running on port ${port}...`.green);
+    new Database(environment).connect();
+});

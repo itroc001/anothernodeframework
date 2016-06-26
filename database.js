@@ -10,7 +10,7 @@ module.exports = class Database {
     }
 
     connect() {
-        console.log(`\nConnected to database ${this.dbName.underline} \n`.cyan);
+        console.log(`\nConnected to database ${this.dbName.underline} \n`.green);
         return mongoose.connect(this.dbName);
     }
 
