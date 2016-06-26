@@ -1,23 +1,13 @@
 const http_mocks = require('node-mocks-http');
 const controller = require('../../../../app/controllers/users');
-const User = require('../../../../app/models/user');
 
 describe('UserController', () => {
-    let _uniqueId = 0;
     let res, req, user;
 
-
-    beforeEach((done) => {
+    beforeEach(() => {
         res = http_mocks.createResponse({
             eventEmitter: require('events').EventEmitter
         });
-
-        user = new User({
-            username: 'testuser-' + (_uniqueId++), // get unique username
-            password: 'Password123'
-        });
-
-        user.save(done);
     });
 
 
@@ -28,15 +18,18 @@ describe('UserController', () => {
         });
 
         res.on('end', () => {
-            let data = JSON.parse(res._getData());
-            expect(data.length > 0).to.be.equal(true);
+            expect(res._isJSON()).to.be.equal(true);
+            expect(res._getStatusCode()).to.be.equal(200);
+            expect(res._getRenderView()).to.be.equal('users/index');
+            expect(res._getRenderData()).to.have.property('data');
+            expect(res._getRenderData()).to.have.property('error');
             done();
         });
 
         controller.index(req, res);
     });
 
-    // Create
+    // // Create
     it('#create', (done) => {
 
         req = http_mocks.createRequest({
@@ -50,8 +43,11 @@ describe('UserController', () => {
         });
 
         res.on('end', () => {
-            let data = JSON.parse(res._getData());
-            expect(data).to.be.a('Object');
+            expect(res._isJSON()).to.be.equal(true);
+            expect(res._getStatusCode()).to.be.equal(200);
+            expect(res._getRenderView()).to.be.equal('users/create');
+            expect(res._getRenderData()).to.have.property('data');
+            expect(res._getRenderData()).to.have.property('error');
             done();
         });
 
@@ -63,13 +59,16 @@ describe('UserController', () => {
         req = http_mocks.createRequest({
             method: 'GET',
             params: {
-                id: user._id
+                id: 123
             }
         });
 
         res.on('end', () => {
-            let data = JSON.parse(res._getData());
-            expect(data._id).to.be.equal(req.params.id.toString());
+            expect(res._isJSON()).to.be.equal(true);
+            expect(res._getStatusCode()).to.be.equal(200);
+            expect(res._getRenderView()).to.be.equal('users/show');
+            expect(res._getRenderData()).to.have.property('data');
+            expect(res._getRenderData()).to.have.property('error');
             done();
         });
 
@@ -81,7 +80,7 @@ describe('UserController', () => {
         req = http_mocks.createRequest({
             method: 'PUT',
             params: {
-                id: user._id
+                id: 123
             },
             body: {
                 user: {
@@ -91,8 +90,11 @@ describe('UserController', () => {
         });
 
         res.on('end', () => {
-            let data = JSON.parse(res._getData());
-            expect(data.username).to.be.equal(req.body.user.username);
+            expect(res._isJSON()).to.be.equal(true);
+            expect(res._getStatusCode()).to.be.equal(200);
+            expect(res._getRenderView()).to.be.equal('users/update');
+            expect(res._getRenderData()).to.have.property('data');
+            expect(res._getRenderData()).to.have.property('error');
             done();
         });
 
@@ -100,17 +102,20 @@ describe('UserController', () => {
     });
 
     // Delete
-    it('#show', (done) => {
+    it('#delete', (done) => {
         req = http_mocks.createRequest({
             method: 'DELETE',
             params: {
-                id: user._id
+                id: 123
             }
         });
 
         res.on('end', () => {
-            let data = JSON.parse(res._getData());
-            expect(data).to.be.equal(true);
+            expect(res._isJSON()).to.be.equal(true);
+            expect(res._getStatusCode()).to.be.equal(200);
+            expect(res._getRenderView()).to.be.equal('users/delete');
+            expect(res._getRenderData()).to.have.property('data');
+            expect(res._getRenderData()).to.have.property('error');
             done();
         });
 

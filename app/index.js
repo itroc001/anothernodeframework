@@ -12,16 +12,18 @@ const port = process.env.PORT || 8080;
 // Environment
 const environment = process.env.NODE_ENV || 'test';
 
-// Database Connection
+// Database
 const Database = require('../database');
-const db = new Database(environment);
-db.connect();
 
 // Body Parser to get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+// Views Engine
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
 // Routes
 const router = express.Router();
@@ -30,17 +32,14 @@ const router = express.Router();
 app.use(morgan('dev'));
 
 // middleware to use for all requests
-router.use(function(req, res, next) {
-    // do logging
-    next(); // make sure we go to the next routes and don't stop here
-});
+router.use((req, res, next) => next());
 
 // Routes
 require('./routes')(app);
 
-// Register Routes
-app.use('/api', router);
 
 // Start server
-app.listen(port);
-console.log(`\nServer running on port ${port}...\n`.green);
+module.exports = app.listen(port, () => {
+    console.log(`\nServer running on port ${port}...`.green);
+    new Database(environment).connect();
+});
