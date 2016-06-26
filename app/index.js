@@ -23,6 +23,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+// Views Engine
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
 // Routes
 const router = express.Router();
 
@@ -30,16 +34,11 @@ const router = express.Router();
 app.use(morgan('dev'));
 
 // middleware to use for all requests
-router.use(function(req, res, next) {
-    // do logging
-    next(); // make sure we go to the next routes and don't stop here
-});
+router.use((req, res, next) => next());
 
 // Routes
 require('./routes')(app);
 
-// Register Routes
-app.use('/api', router);
 
 // Start server
 app.listen(port);

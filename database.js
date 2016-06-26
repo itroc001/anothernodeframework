@@ -14,10 +14,4 @@ module.exports = class Database {
         return mongoose.connect(this.dbName);
     }
 
-    disconnect() {
-        console.log(`\nDisconnected from database ${this.dbName.underline} \n`.cyan);
-        return mongoose.connection.close();
-    }
-
-
 }
