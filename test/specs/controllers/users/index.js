@@ -77,6 +77,7 @@ describe('UserController', () => {
 
     // Update
     it('#update', (done) => {
+
         req = http_mocks.createRequest({
             method: 'PUT',
             params: {
