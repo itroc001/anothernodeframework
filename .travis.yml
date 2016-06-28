@@ -9,7 +9,6 @@ script:
     - npm test
 
 after_success:
-    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
     - CODECLIMATE_REPO_TOKEN=7a311c3f494eb5dec48411c6682501d4eb7c4cb7ab5ce9d78f32429a8da86a2e ./node_modules/codeclimate-test-reporter < ./coverage/lcov.info
 
 addons:
