@@ -1,11 +1,11 @@
 const User = require('../../models/user');
 const Controller = require('../');
-// const controller = new Controller(User);
+const controller = new Controller(User);
 
 module.exports = class UserController {
 
     constructor() {
-        this._controller = new Controller(User)
+        this._controller = controller;
     }
 
     // Index
