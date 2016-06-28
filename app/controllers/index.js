@@ -57,7 +57,7 @@ module.exports = class Controller {
         if (_error) {
             status = 400;
             view = this.name + '/error';
-            data = { error: _error };
+            data = { data: _error };
         } else if (_data) {
             status = 200;
             view = this.name + '/' + this._activeAction;

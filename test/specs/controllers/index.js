@@ -149,7 +149,7 @@ describe('BaseController', () => {
 
             expect(res._getStatusCode()).to.be.equal(400);
             expect(res._getRenderView()).to.be.equal('tests/error');
-            expect(res._getRenderData()).to.have.property('error');
+            expect(res._getRenderData()).to.have.property('data');
         });
 
         it('if data', () => {
