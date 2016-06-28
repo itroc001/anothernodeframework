@@ -1,5 +1,4 @@
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
 const colors =  require('colors');
 
 // Express App
@@ -29,6 +28,7 @@ app.set('views', __dirname + '/views');
 const router = express.Router();
 
 // use morgan to log requests to the console
+const morgan = require('morgan');
 app.use(morgan('dev'));
 
 // middleware to use for all requests
