@@ -1,52 +1,51 @@
 const User = require('../../models/user');
-const BaseController = require('../');
-const controller = new BaseController(User);
+const Controller = require('../');
+const controller = new Controller(User);
 
 module.exports = class UserController {
 
+    constructor() {
+        this._controller = controller;
+    }
+
     // Index
-    static index(req, res) {
-        return controller.index((err, data) => {
-            res.contentType('application/json');
-            res.render('users/index', { data: data, error: err });
+    index(req, res) {
+        this._controller.index((err, data) => {
+            this._controller._renderViewAsJSON(res, err, data);
         });
     }
 
     // Create
-    static create(req, res) {
-        return controller.create(req.body.user, (err, data) => {
-            res.contentType('application/json');
-            res.render('users/create', { data: data, error: err });
+    create(req, res) {
+        this._controller.create(req.body.user, (err, data) => {
+            this._controller._renderViewAsJSON(res, err, data);
         });
     }
 
     // Show
-    static show(req, res) {
-        return controller.show({
+    show(req, res) {
+        this._controller.show({
             _id: req.params.id
         }, (err, data) => {
-            res.contentType('application/json');
-            res.render('users/show', { data: data, error: err });
+            this._controller._renderViewAsJSON(res, err, data);
         });
     }
 
     // Update
-    static update(req, res) {
-        return controller.update({
+    update(req, res) {
+        this._controller.update({
             _id: req.params.id
         }, req.body.user, (err, data) => {
-            res.contentType('application/json');
-            res.render('users/update', { data: data, error: err });
+            this._controller._renderViewAsJSON(res, err, data);
         });
     };
 
     // Delete
-    static delete(req, res) {
-        return controller.delete({
+    delete(req, res) {
+        this._controller.delete({
             _id: req.params.id
         }, (err, data) => {
-            res.contentType('application/json');
-            res.render('users/delete', { data: data, error: err });
+            this._controller._renderViewAsJSON(res, err, data);
         });
     }
 

@@ -1,8 +1,7 @@
-<%
+<%_
     _users = [];
-    data.forEach((user) => _users.push( include('show', { data: user }) ));
-%>
-
+    data.forEach((user) => _users.push( include('_user', { data: user }) ));
+_%>
 {
     "users": [<%- _users %>]
 }
