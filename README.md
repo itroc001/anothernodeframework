@@ -7,7 +7,9 @@
 
 (work in progress)
 
-Run server: `npm start`
+Run server in Development: `npm start:development`
+
+Run server in Production: `npm start:production`
 
 Run Tests: `npm test`
 
